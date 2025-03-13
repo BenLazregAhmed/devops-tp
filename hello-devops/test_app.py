@@ -1,8 +1,11 @@
-# test_app.py
 import unittest
-# For a simple example, we simply test True.
+from app import app
+
 class TestApp(unittest.TestCase):
-    def test_output(self):
-        self.assertTrue(True)
-if __name__ == "__main__":
+    def test_home_route(self):
+        tester = app.test_client()  # Supprime `self`
+        response = tester.get('/status')
+        self.assertEqual(response.status_code, 200)
+
+if __name__ == '__main__':
     unittest.main()
